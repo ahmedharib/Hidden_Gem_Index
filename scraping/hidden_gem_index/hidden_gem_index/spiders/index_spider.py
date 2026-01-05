@@ -1,23 +1,30 @@
+"""
+This module contains a Scrapy spider for scraping various quality of life
+indices from Numbeo.
+"""
 import scrapy
 
-
 class IndexSpiderSpider(scrapy.Spider):
+    """
+    Spider to scrape Cost of Living, Safety, Health Care, and other indices
+    from Numbeo.com based on specific URL patterns.
+    """
     name = "index_spider"
     allowed_domains = ["numbeo.com"]
     start_urls = [
-                "https://www.numbeo.com/cost-of-living/rankings_current.jsp?displayColumn=2",
-                "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=1",
-                "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=2",
-                "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=3",
-                "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=5",
-                "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=6",
-                "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=7"
-                  ]
+        "https://www.numbeo.com/cost-of-living/rankings_current.jsp?displayColumn=2",
+        "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=1",
+        "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=2",
+        "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=3",
+        "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=5",
+        "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=6",
+        "https://www.numbeo.com/quality-of-life/rankings_current.jsp?displayColumn=7"
+    ]
 
     url_mappings = {
         'cost-of-living/rankings_current.jsp?displayColumn=2': 'cost_of_living_plus_rent_index',
         'displayColumn=1': 'purchasing_power_index',
-        'quality-of-life/rankings_current.jsp?displayColumn=2' : 'safety_index',
+        'quality-of-life/rankings_current.jsp?displayColumn=2': 'safety_index',
         'displayColumn=3': 'health_care_index',
         'displayColumn=5': 'property_price_to_income_ratio',
         'displayColumn=6': 'traffic_index',
